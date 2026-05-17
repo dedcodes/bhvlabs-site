@@ -4,96 +4,151 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BHV Labs</title>
-  <meta name="description" content="BHV Labs builds independent software products." />
+  <meta name="description" content="An independent software studio." />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      color: #0f172a;
-      background: #fafafa;
-      min-height: 100vh;
-      line-height: 1.6;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #000;
+      color: #fff;
       -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+      pointer-events: none;
+    }
+    .glow {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.12), transparent 70%);
+      pointer-events: none;
+      animation: pulse 10s ease-in-out infinite;
+      filter: blur(20px);
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
     }
     .container {
-      max-width: 640px;
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 96px 24px 60px;
+      padding: 40px;
+    }
+    header, footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
     }
     .logo {
-      display: inline-flex;
+      font-weight: 800;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 2px;
+    }
+    .status {
+      display: flex;
       align-items: center;
+      gap: 8px;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 10px #4ade80;
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    main {
+      display: flex;
+      flex-direction: column;
       justify-content: center;
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: #0f172a;
-      color: white;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: -0.5px;
-      margin-bottom: 36px;
-      font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+      flex: 1;
     }
     h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: -1.2px;
-      margin-bottom: 12px;
+      font-size: clamp(3rem, 13vw, 10rem);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 0.9;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.5) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .tagline {
-      font-size: 1.15rem;
-      color: #64748b;
-      margin-bottom: 56px;
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      color: rgba(255,255,255,0.55);
       font-weight: 400;
-      max-width: 480px;
+      max-width: 540px;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
     }
-    .section { margin-bottom: 36px; }
-    h2 {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #94a3b8;
-      margin-bottom: 8px;
+    .footer-right {
+      text-align: right;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.2);
+      line-height: 1.7;
+      text-transform: none;
+      letter-spacing: 0.5px;
+      font-family: 'JetBrains Mono', monospace;
     }
-    p { font-size: 1.0rem; color: #334155; }
-    a {
-      color: #0f172a;
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-      transition: opacity 0.15s ease;
-    }
-    a:hover { opacity: 0.6; }
-    .footer {
-      margin-top: 96px;
-      padding-top: 28px;
-      border-top: 1px solid #e2e8f0;
-      font-size: 0.85rem;
-      color: #94a3b8;
-    }
-    .footer p { font-size: 0.85rem; color: #94a3b8; margin-bottom: 4px; }
-    @media (max-width: 480px) {
-      .container { padding: 64px 20px 40px; }
-      h1 { font-size: 2rem; }
-      .tagline { font-size: 1.05rem; margin-bottom: 48px; }
+    @media (max-width: 600px) {
+      .container { padding: 24px; }
+      header, footer { font-size: 0.65rem; }
+      .footer-right { font-size: 0.6rem; }
     }
   </style>
 </head>
 <body>
+  <div class="grid-bg"></div>
+  <div class="glow"></div>
   <div class="container">
-    <div class="logo">BHV</div>
-    <h1>BHV Labs</h1>
-    <p class="tagline">Building independent software products.</p>
-    <div class="section">
-      <h2>Contact</h2>
-      <p><a href="mailto:hello@bhvlabs.dev">hello@bhvlabs.dev</a></p>
-    </div>
-    <div class="footer">
-      <p>BHV Labs is a product line of Blue Horizon Ventures, LLC.</p>
-      <p>Registered in New Jersey, United States.</p>
-    </div>
+    <header>
+      <div class="logo">BHV</div>
+      <div class="status">
+        <div class="status-dot"></div>
+        <span>Currently Building</span>
+      </div>
+    </header>
+    <main>
+      <h1>BHV Labs</h1>
+      <p class="tagline">An independent software studio building consumer products at the edge of what's useful.</p>
+    </main>
+    <footer>
+      <div>est. 2026</div>
+      <div class="footer-right">
+        A Blue Horizon Ventures Company<br>
+        New Jersey, USA
+      </div>
+    </footer>
   </div>
 </body>
 </html>
