@@ -3,58 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BHV Labs</title>
-  <meta name="description" content="An independent software studio." />
+  <title>BHV Labs — Independent Software Studio</title>
+  <meta name="description" content="BHV Labs is an independent software studio operated by Blue Horizon Ventures, LLC, building consumer products in health, productivity, and personal data." />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; overflow: hidden; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #000;
+      background: #0a0a0a;
       color: #fff;
       -webkit-font-smoothing: antialiased;
-      position: relative;
+      line-height: 1.6;
     }
     .grid-bg {
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
       background-size: 48px 48px;
-      mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
-      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+      mask-image: radial-gradient(ellipse at center top, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse at center top, black 20%, transparent 80%);
       pointer-events: none;
+      z-index: 0;
     }
     .glow {
       position: fixed;
-      top: 50%;
+      top: 30%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 700px;
       height: 700px;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.12), transparent 70%);
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.10), transparent 70%);
       pointer-events: none;
-      animation: pulse 10s ease-in-out infinite;
       filter: blur(20px);
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+      z-index: 0;
     }
     .container {
       position: relative;
       z-index: 1;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      max-width: 1200px;
+      max-width: 880px;
       margin: 0 auto;
-      padding: 40px;
+      padding: 40px 32px 80px;
     }
-    header, footer {
+    header {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -63,67 +55,110 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       color: rgba(255,255,255,0.4);
+      margin-bottom: 96px;
     }
     .logo {
       font-weight: 800;
       color: rgba(255,255,255,0.85);
       letter-spacing: 2px;
     }
-    .status {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .status { display: flex; align-items: center; gap: 8px; }
     .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
+      width: 7px; height: 7px; border-radius: 50%;
       background: #4ade80;
       box-shadow: 0 0 10px #4ade80;
       animation: blink 2s ease-in-out infinite;
     }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-    main {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      flex: 1;
-    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     h1 {
-      font-size: clamp(3rem, 13vw, 10rem);
+      font-size: clamp(2.5rem, 8vw, 5rem);
       font-weight: 800;
-      letter-spacing: -0.05em;
-      line-height: 0.9;
+      letter-spacing: -0.04em;
+      line-height: 1;
       margin-bottom: 1.5rem;
-      background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.5) 100%);
+      background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.6) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    .tagline {
-      font-size: clamp(1rem, 1.8vw, 1.25rem);
-      color: rgba(255,255,255,0.55);
+    .lede {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: rgba(255,255,255,0.7);
       font-weight: 400;
-      max-width: 540px;
+      max-width: 640px;
       letter-spacing: -0.01em;
-      line-height: 1.5;
+      margin-bottom: 80px;
     }
-    .footer-right {
-      text-align: right;
-      font-size: 0.65rem;
-      color: rgba(255,255,255,0.2);
-      line-height: 1.7;
-      text-transform: none;
-      letter-spacing: 0.5px;
+    section { margin-bottom: 64px; }
+    h2 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: #94a3b8;
+      margin-bottom: 16px;
       font-family: 'JetBrains Mono', monospace;
     }
+    p {
+      font-size: 1.0rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 16px;
+      max-width: 680px;
+    }
+    p:last-child { margin-bottom: 0; }
+    .focus-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 640px;
+    }
+    @media (min-width: 600px) {
+      .focus-list { grid-template-columns: 1fr 1fr; }
+    }
+    .focus-item {
+      padding: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+    }
+    .focus-item-title {
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+    .focus-item-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+    a {
+      color: #818cf8;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: opacity 0.15s ease;
+    }
+    a:hover { opacity: 0.7; }
+    .footer {
+      margin-top: 80px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .footer p {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
     @media (max-width: 600px) {
-      .container { padding: 24px; }
-      header, footer { font-size: 0.65rem; }
-      .footer-right { font-size: 0.6rem; }
+      .container { padding: 24px 20px 48px; }
+      header { margin-bottom: 56px; font-size: 0.65rem; }
     }
   </style>
 </head>
@@ -138,17 +173,50 @@
         <span>Currently Building</span>
       </div>
     </header>
-    <main>
-      <h1>BHV Labs</h1>
-      <p class="tagline">An independent software studio building consumer products at the edge of what's useful.</p>
-    </main>
-    <footer>
-      <div>est. 2026</div>
-      <div class="footer-right">
-        A Blue Horizon Ventures Company<br>
-        New Jersey, USA
-      </div>
-    </footer>
+
+    <h1>BHV Labs</h1>
+    <p class="lede">An independent software studio building consumer products at the intersection of health, productivity, and personal data.</p>
+
+    <section>
+      <h2>About</h2>
+      <p>BHV Labs is the software product arm of Blue Horizon Ventures, LLC, a New Jersey limited liability company. We design, build, and operate consumer-facing applications for individuals who want better tools for managing their health, finances, and daily decisions.</p>
+      <p>Our work focuses on building software that is honest about data, respectful of user attention, and grounded in the way people actually live — rather than how technology companies wish they did.</p>
+    </section>
+
+    <section>
+      <h2>Areas of Focus</h2>
+      <ul class="focus-list">
+        <li class="focus-item">
+          <div class="focus-item-title">Health & Nutrition</div>
+          <div class="focus-item-desc">Tools that help individuals make informed food and lifestyle decisions in real-world contexts.</div>
+        </li>
+        <li class="focus-item">
+          <div class="focus-item-title">Personal Finance</div>
+          <div class="focus-item-desc">Software that gives individuals clearer visibility into their financial decisions.</div>
+        </li>
+        <li class="focus-item">
+          <div class="focus-item-title">Productivity</div>
+          <div class="focus-item-desc">Applications designed to reduce cognitive load for high-agency professionals.</div>
+        </li>
+        <li class="focus-item">
+          <div class="focus-item-title">Personal Data</div>
+          <div class="focus-item-desc">Tools that put individuals in control of their own information.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <p>For general inquiries: <a href="mailto:hello@bhvlabs.dev">hello@bhvlabs.dev</a></p>
+      <p>For business correspondence regarding Blue Horizon Ventures, LLC: <a href="mailto:hello@bhvlabs.dev">hello@bhvlabs.dev</a></p>
+    </section>
+
+    <div class="footer">
+      <p><strong style="color: rgba(255,255,255,0.7);">BHV Labs</strong> is the trade name of Blue Horizon Ventures, LLC.</p>
+      <p>Blue Horizon Ventures, LLC is a limited liability company registered in the State of New Jersey, United States (NJ Business Entity ID: 0451372444).</p>
+      <p>Alternate Name "BHV Labs" registered with the State of New Jersey on May 23, 2026.</p>
+      <p style="margin-top: 16px;">© 2026 Blue Horizon Ventures, LLC. All rights reserved.</p>
+    </div>
   </div>
 </body>
 </html>
